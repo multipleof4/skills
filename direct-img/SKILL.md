@@ -1,47 +1,24 @@
 ---
 name: direct-img
-description: Find, preview and embed images with direct-img.link, where a URL like https://direct-img.link/orange+cat returns an image directly. Use when the user asks for images, pictures, photos, gifs, reaction images or illustrations, wants images embedded in markdown, HTML, READMEs, docs, slides, emails or web pages, or needs free-to-use (public domain / CC0) images for publishing via free.direct-img.link.
+description: Embed images anywhere with direct-img.link URLs, where https://direct-img.link/orange+cat returns an image directly. For finding or embedding images, photos, gifs or illustrations in chat, markdown, HTML, docs or web pages, and free.direct-img.link for public domain / CC0 images.
 ---
 
 # direct-img.link
 
-A URL is the search: `https://direct-img.link/<query>` searches the web and returns the image itself, so it can be embedded anywhere an image URL works. Results are cached for 90 days, so the same URL keeps showing the same image.
+`https://direct-img.link/<query>` returns an image found by searching for `<query>`. It works anywhere an image URL does.
 
-## URL format
+## URLs
 
-- Join words with `+`: `https://direct-img.link/golden+retriever+puppy`
-- Percent-encode `.` as `%2E` and `/` as `%2F` (literal ones are rejected), and other special characters as usual (`'` → `%27`, `&` → `%26`). Max 200 characters. Case and extra spaces don't matter.
-- `?i=N` (1–20, default 1) serves the N-th working image. Broken links are skipped, so every `i` is a different image.
-- `https://free.direct-img.link/<query>` serves only images marked free of restrictions (public domain / CC0), so no credit is needed. It searches Openverse, then Wikimedia Commons. Add `&src=openverse` or `&src=wikimedia` to pick one. Params work in any order.
-- Instead of a result, you may get the site's [bad image](https://direct-img.link/assets/bad.webp) (no working result, or invalid params) or [limit image](https://direct-img.link/assets/limit.webp) (daily search limit hit).
+- Words are joined with `+`: `https://direct-img.link/golden+retriever+puppy`
+- Literal `.` and `/` are rejected; encode them as `%2E` and `%2F`. Other special characters are percent-encoded as usual. Max 200 characters; case and extra spaces are ignored.
+- `?i=N` (1–20, default 1) returns the N-th working image for the query. Each `i` is a different image.
+- A URL keeps returning the same image for 90 days, then may return a different one.
+- With no result or an invalid parameter, a placeholder [bad image](https://direct-img.link/assets/bad.webp) is returned.
+- Any URL can be downloaded and viewed to see what it returns.
 
-## Which host
+## Free images
 
-- **free.direct-img.link**: anything published or shared where rights matter: websites, articles, blogs, READMEs, repos, docs, newsletters, commercial use.
-- **direct-img.link**: chat answers, personal notes, reaction gifs, "show me what X looks like". Much better coverage (current events, people, products, gifs), but images belong to their owners, so don't use it for publishing.
-- If free has nothing good, say so instead of quietly switching to the main host for publishable content.
-
-## Picking the best image
-
-When the image matters (the user asked for images, or it will be published), don't blindly embed `i=1`:
-
-1. **Write a specific query**: concrete nouns and details ("golden retriever puppy in snow", not "dog"). On free, drop filler words like "hd", "photo", "image", "high quality" (they must match image text and cause misses). Add "gif" for animated images on the main host.
-2. **Preview candidates**: download `?i=1`, `?i=2` and `?i=3` into a temporary folder (e.g. `curl -sLo <file> "<url>"`) and open each file with the Read tool to see it. Stop at the bad image (there are fewer working images than that `i`) or the limit image.
-3. **Judge each against the request**: right subject, fits the requested style or mood, no watermarks, text overlays or collages, sharp enough, suitable content, and an orientation that fits where it goes.
-4. **If none fit**, rephrase the query (or switch `src` on free) rather than digging deep into `i`.
-5. **Embed the exact URL** of the winner, including `?i=` / `&src=`, e.g. `https://free.direct-img.link/orange+cat?i=2`.
-
-For quick casual images (a reaction gif in chat), skip previewing and embed a well-chosen query directly. If an image can't be displayed by Read, don't guess its content; judge the others.
-
-## Budget
-
-- Every new query + `i` + `src` combination uses 1 of the user's **35 new searches per day** (per IP, shared by both hosts). Cached URLs are free. Previewing costs the same as embedding would, and warms the cache so the embed loads instantly.
-- Default to 3 candidates and about 10 new searches per request at most, unless the user asks for more.
-- On the limit image, stop and tell the user (it resets at 00:00 UTC).
-- Requests are also limited to about 10 per 10 seconds, so space downloads about a second apart.
-
-## Embedding
-
-- Always write descriptive alt text: markdown `![golden retriever puppy in snow](url)`, HTML `<img src="url" alt="..." loading="lazy">`.
-- Links stay stable for about 90 days. After that, the next request searches again and may return a different image. For permanent content (a site or article that lives for years), suggest downloading the chosen image and hosting it.
-- Free-image licenses come from Openverse/Wikimedia metadata and can occasionally be wrong. For important publishing, suggest verifying on the source.
+- `https://free.direct-img.link/<query>` returns only images marked public domain or CC0, from Openverse, then Wikimedia Commons. No credit is needed. It has far fewer images than the main host.
+- `?src=openverse` or `?src=wikimedia` limits it to one source. `src` and `i` combine in any order.
+- License labels come from those sources and can occasionally be wrong.
+- Images from the main `direct-img.link` host belong to their owners and aren't licensed for publishing.
