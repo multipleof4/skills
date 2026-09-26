@@ -35,7 +35,7 @@ For quick casual images (a reaction gif in chat), skip previewing and embed a we
 
 ## Budget
 
-- Every new query + `i` + `src` combination uses 1 of the user's **20 new searches per day** (per IP, shared by both hosts). Cached URLs are free. Previewing costs the same as embedding would, and warms the cache so the embed loads instantly.
+- Every new query + `i` + `src` combination uses 1 of the user's **35 new searches per day** (per IP, shared by both hosts). Cached URLs are free. Previewing costs the same as embedding would, and warms the cache so the embed loads instantly.
 - Default to 3 candidates and about 10 new searches per request at most, unless the user asks for more.
 - On the limit image, stop and tell the user (it resets at 00:00 UTC).
 - Requests are also limited to about 10 per 10 seconds, so space downloads about a second apart.
