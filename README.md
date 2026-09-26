@@ -8,10 +8,14 @@ Personal [Claude Code skills](https://code.claude.com/docs/en/skills).
 
 ## Install
 
-This repo is laid out as a personal skills folder. If you don't have `~/.claude/skills` yet, clone it there:
+Clone the repo anywhere, then copy the skill folders you want into `~/.claude/skills/`:
 
 ```bash
-git clone https://github.com/multipleof4/skills ~/.claude/skills
+git clone https://github.com/multipleof4/skills
 ```
 
-Otherwise copy (or symlink) the skill folders you want into `~/.claude/skills/`. Update with `git pull`.
+```bash
+mkdir -p ~/.claude/skills && cp -r skills/direct-img ~/.claude/skills/
+```
+
+To update, `git pull` and copy again. Claude Code picks up changes to `~/.claude/skills` without a restart.
