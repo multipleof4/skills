@@ -1,7 +1,6 @@
 ---
 name: direct-img
 description: Find, preview and embed images with direct-img.link, where a URL like https://direct-img.link/orange+cat returns an image directly. Use when the user asks for images, pictures, photos, gifs, reaction images or illustrations, wants images embedded in markdown, HTML, READMEs, docs, slides, emails or web pages, or needs free-to-use (public domain / CC0) images for publishing via free.direct-img.link.
-allowed-tools: Bash(bash ${CLAUDE_SKILL_DIR}/scripts/preview.sh *) Read
 ---
 
 # direct-img.link
@@ -14,7 +13,7 @@ A URL is the search: `https://direct-img.link/<query>` searches the web and retu
 - Percent-encode `.` as `%2E` and `/` as `%2F` (literal ones are rejected), and other special characters as usual (`'` → `%27`, `&` → `%26`). Max 200 characters. Case and extra spaces don't matter.
 - `?i=N` (1–20, default 1) serves the N-th working image. Broken links are skipped, so every `i` is a different image.
 - `https://free.direct-img.link/<query>` serves only images marked free of restrictions (public domain / CC0), so no credit is needed. It searches Openverse, then Wikimedia Commons. Add `&src=openverse` or `&src=wikimedia` to pick one. Params work in any order.
-- A generic "bad" image means no working result (or invalid params); a "limit" image means the daily search limit was hit.
+- Instead of a result, you may get the site's [bad image](https://direct-img.link/assets/bad.webp) (no working result, or invalid params) or [limit image](https://direct-img.link/assets/limit.webp) (daily search limit hit).
 
 ## Which host
 
@@ -27,13 +26,9 @@ A URL is the search: `https://direct-img.link/<query>` searches the web and retu
 When the image matters (the user asked for images, or it will be published), don't blindly embed `i=1`:
 
 1. **Write a specific query**: concrete nouns and details ("golden retriever puppy in snow", not "dog"). On free, drop filler words like "hd", "photo", "image", "high quality" (they must match image text and cause misses). Add "gif" for animated images on the main host.
-2. **Preview candidates**:
-   ```bash
-   bash ${CLAUDE_SKILL_DIR}/scripts/preview.sh [--free] [--src openverse|wikimedia] [--from N] [--to N] "query"
-   ```
-   It downloads `i=1..3` by default, flags duplicates and the bad/limit images, and prints each file's path. Open every file with the Read tool to see it.
+2. **Preview candidates**: download `?i=1`, `?i=2` and `?i=3` into a temporary folder (e.g. `curl -sLo <file> "<url>"`) and open each file with the Read tool to see it. Stop at the bad image (there are fewer working images than that `i`) or the limit image.
 3. **Judge each against the request**: right subject, fits the requested style or mood, no watermarks, text overlays or collages, sharp enough, suitable content, and an orientation that fits where it goes.
-4. **If none fit**, rephrase the query (or switch `--src` on free) rather than digging deep into `i`.
+4. **If none fit**, rephrase the query (or switch `src` on free) rather than digging deep into `i`.
 5. **Embed the exact URL** of the winner, including `?i=` / `&src=`, e.g. `https://free.direct-img.link/orange+cat?i=2`.
 
 For quick casual images (a reaction gif in chat), skip previewing and embed a well-chosen query directly. If an image can't be displayed by Read, don't guess its content; judge the others.
@@ -43,7 +38,7 @@ For quick casual images (a reaction gif in chat), skip previewing and embed a we
 - Every new query + `i` + `src` combination uses 1 of the user's **20 new searches per day** (per IP, shared by both hosts). Cached URLs are free. Previewing costs the same as embedding would, and warms the cache so the embed loads instantly.
 - Default to 3 candidates and about 10 new searches per request at most, unless the user asks for more.
 - On the limit image, stop and tell the user (it resets at 00:00 UTC).
-- Requests are also limited to about 10 per 10 seconds; the script paces itself.
+- Requests are also limited to about 10 per 10 seconds, so space downloads about a second apart.
 
 ## Embedding
 
