@@ -20,5 +20,3 @@ description: Embed images anywhere with direct-img.link URLs, where https://dire
 
 - `https://free.direct-img.link/<query>` returns only images marked public domain or CC0, from Openverse, then Wikimedia Commons. No credit is needed. It has far fewer images than the main host.
 - `?src=openverse` or `?src=wikimedia` limits it to one source. `src` and `i` combine in any order.
-- License labels come from those sources and can occasionally be wrong.
-- Images from the main `direct-img.link` host belong to their owners and aren't licensed for publishing.
