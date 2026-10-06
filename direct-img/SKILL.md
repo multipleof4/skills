@@ -20,3 +20,9 @@ description: Embed images anywhere with direct-img.link URLs, where https://dire
 
 - `https://free.direct-img.link/<query>` returns only images marked public domain or CC0, from Openverse, then Wikimedia Commons. No credit is needed. It has far fewer images than the main host.
 - `?src=openverse` or `?src=wikimedia` limits it to one source. `src` and `i` combine in any order.
+
+## Rate limit
+
+- `direct-img.link`: 35 new searches per day per IP
+- `free.direct-img.link`: 100 new searches per day per IP
+- Burst: ~10 requests per 10 seconds per IP
