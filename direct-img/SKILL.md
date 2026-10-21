@@ -11,7 +11,7 @@ description: Embed images anywhere with direct-img.link URLs, where https://dire
 
 - Words are joined with `+`: `https://direct-img.link/golden+retriever+puppy`
 - Literal `.` and `/` are rejected; encode them as `%2E` and `%2F`. Other special characters are percent-encoded as usual. Max 200 characters; case and extra spaces are ignored.
-- `?i=N` (1–20, default 1) returns the N-th working image for the query. Each `i` is a different image.
+- `?i=N` (1–40, default 1; 1–20 on free) returns the N-th working image for the query. Each `i` is a different image.
 - A URL keeps returning the same image for 90 days, then may return a different one.
 - With no result or an invalid parameter, a placeholder [bad image](https://direct-img.link/assets/bad.webp) is returned.
 - Any URL can be downloaded and viewed to see what it returns.
@@ -25,4 +25,6 @@ description: Embed images anywhere with direct-img.link URLs, where https://dire
 
 - `direct-img.link`: 35 new searches per day per IP
 - `free.direct-img.link`: 100 new searches per day per IP
+- Only new searches count. Cached URLs keep loading after the limit is hit.
+- A search's results are kept for 1 hour, so other `?i=` values of a query searched in the last hour don't count either. If an image is wrong, try `?i=2`, `?i=3`… right away before rewording the query, since a reworded query is a new search.
 - Burst: ~10 requests per 10 seconds per IP
