@@ -29,7 +29,7 @@ description: Embed images anywhere with direct-img.link URLs, where https://dire
 
 ## Rate limit
 
-- `direct-img.link`: 10 new searches per day per IP
+- `direct-img.link`: 15 new searches per day per IP
 - `free.direct-img.link`: 100 new searches per day per IP
 - `ai.direct-img.link`: 100 new images per day per IP
 - Each host has its own counter, reset at 00:00 UTC. Only new searches count. Cached URLs keep loading after the limit is hit.
