@@ -4,7 +4,7 @@ Personal [Claude Code skills](https://code.claude.com/docs/en/skills).
 
 | Skill | What it does |
 |---|---|
-| [direct-img](direct-img/SKILL.md) | How [direct-img.link](https://direct-img.link) image URLs work, including free (public domain / CC0) images |
+| [direct-img](direct-img/SKILL.md) | How [direct-img.link](https://direct-img.link) image URLs work, including free (public domain / CC0) and AI-generated images |
 
 ## Install
 
