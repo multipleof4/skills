@@ -5,6 +5,7 @@ Personal [Claude Code skills](https://code.claude.com/docs/en/skills).
 | Skill | What it does |
 |---|---|
 | [direct-img](direct-img/SKILL.md) | How [direct-img.link](https://direct-img.link) image URLs work, including free (public domain / CC0) and AI-generated images |
+| [vibegif](vibegif/SKILL.md) | Adds animations from [vibegif](https://vibegif.direct-img.link), a public domain collection of animated webp/gifs, to UIs while coding |
 
 ## Install
 
